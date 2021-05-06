@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-const currencies = [
+const regions = [
   {
     value: 'All',
     label: 'All',
@@ -39,12 +39,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const Filter = () => {
+const Filter = ({sendDataToParent}) => {
    const classes = useStyles();
   const [region, setRegion] = useState('All');
-
   const handleChange = (event) => {
     setRegion(event.target.value);
+    sendDataToParent(event.target.value)
   };
 
  return (
@@ -57,7 +57,7 @@ const Filter = () => {
           onChange={handleChange}
            className={classes.colors}
         >
-          {currencies.map((option) => (
+          {regions.map((option) => (
             <MenuItem key={option.value} value={option.value}>
               {option.label}
             </MenuItem>
