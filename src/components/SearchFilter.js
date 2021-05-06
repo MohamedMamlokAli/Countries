@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import CardInd from "./CardInd"
 import SearchIcon from '@material-ui/icons/Search';
 import Filter from "./Filter"
@@ -16,23 +16,28 @@ const paginate = (number) =>{
     setFilterChanged(true)
   };
 const {countries} = props
+const [countriesIn,setCountriesIn] = useState(true)
 const [filterChanged,setFilterChanged] = useState(false)
 const [filteredCountires,setFilterdCountries] = useState([])
 const indexOfLastCountry = countriesPerPage * currentPage;
 const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-const currentCountries = filteredCountires.slice(indexOfFirstCountry,indexOfLastCountry)
+const currentCountries =countriesIn?countries.slice(indexOfFirstCountry,indexOfLastCountry):filteredCountires.slice(indexOfFirstCountry,indexOfLastCountry);
 if(filterChanged){
   if(region!=="All"){
-    const filtered = countries.filter(country=>country.region===region)
+    const filtered = countries.filter(country=>country.region==region)
     setFilterdCountries(filtered)
+    setCountriesIn(false)
   }else{
     setFilterdCountries(countries)
+
   }
 setFilterChanged(false)
 }
 
   console.log(filteredCountires)
-
+useEffect(() => {
+  setFilterdCountries(countries)
+}, [])
 const regex = new RegExp(`${search}`,"gi")
 return (
 <div className="bg-white text-gray-800 dark:text-gray-100 dark:bg-gray-700">
@@ -67,7 +72,7 @@ return (
       
 
   </div>
-  {!search&&<div><PaginationWraper countriesPerPage={countriesPerPage} totalCountries = {filteredCountires.length} paginate = {paginate} /></div>
+  {!search&&<div><PaginationWraper countriesPerPage={countriesPerPage} totalCountries = {countriesIn?countries.length:filteredCountires.length} paginate = {paginate} /></div>
   }
 </div>
 )
