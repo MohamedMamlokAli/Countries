@@ -14,7 +14,7 @@ function App() {
 
   return (
     <div id="app" className="App">
-      <div className="bg-white text-gray-800 dark:text-gray-100 dark:bg-gray-700 h-screen ">
+      <div className="bg-white text-gray-800 dark:text-gray-100  dark:bg-gray-800 h-screen">
       <Header />
       <BrowserRouter>
       <Switch>

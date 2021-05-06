@@ -17,7 +17,7 @@ const darkHandler = ()=>{
 
 }
  return (
-  <header id="header" className="flex flex-row font-extrabold lg:text-lg text-md justify-between py-10 px-4 lg:py-9 lg:px-20">
+  <header id="header" className="flex bg-gray-50 text-gray-800 dark:text-gray-100 dark:bg-gray-700 flex-row font-extrabold lg:text-lg text-md justify-between py-10 px-4 lg:py-9 lg:px-20">
    <h1>Where in the world?</h1>
    <div className="flex flex-row cursor-pointer" onClick={darkHandler}>
     <img id="moon" src={mainIMG} alt="Half moon" className="transform -rotate-180"/>

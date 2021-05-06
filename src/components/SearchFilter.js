@@ -39,10 +39,9 @@ if(filterChanged){
   }
 setFilterChanged(false)
 }
-console.log(countries)
 const regex = new RegExp(`${search}`,"gi")
 return (
-<div className="bg-white text-gray-800 dark:text-gray-100 dark:bg-gray-700">
+<div className="bg-white text-gray-800 dark:text-gray-100 dark:bg-gray-800 pt-10">
 <div className="px-20 relative lg:grid lg:grid-flow-row lg:grid-rows-1 lg:grid-cols-2 gap-4">
 <div>
     <SearchIcon className="absolute inset-0 left-24 top-2" />
@@ -56,14 +55,16 @@ return (
 <div className="text-sm gap-4 md:px-10 flex flex-col justify-center items-center md:grid sm:grid-cols-2 lg:grid xl:grid-cols-3 lg:px-20 2xl:grid-cols-4">
     {search?
     filteredCountires.map((country,index)=>regex.test(country.name)?
+          <Link key={index} to={`/${country.name}`}>
     <CardInd 
-    key={index}
-    flag={country.flag} 
-    name={country.name} 
-    population={country.population} 
-    region = {country.region} 
-    capital = {country.capital} 
-    />:"")
+      flag={country.flag} 
+      name={country.name} 
+      population={country.population} 
+      region = {country.region} 
+      capital = {country.capital}
+      />
+      </Link>
+:"")
     :currentCountries.map((country,index)=>
       <Link key={index} to={`/${country.name}`}>
     <CardInd 

@@ -5,5 +5,16 @@
 body {
   font-family: 'Nunito Sans', sans-serif;
 }
-
+.buttonShadow {
+  box-shadow: 0 0 5px rgb(163, 159, 159);
+}
+.info {
+  @apply text-xl font-bold;
+}
+.spanStyle {
+  @apply font-normal;
+}
+.imgWidth {
+  max-width: 34.375rem;
+}
 @tailwind utilities;
