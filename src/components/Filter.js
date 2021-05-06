@@ -8,21 +8,21 @@ const regions = [
     label: 'All',
   },
   {
-    value: 'EU',
+    value: 'Europe',
     label: 'Europe',
   },
   {
-    value: 'LBL',
+    value: 'Asia',
     label: 'Asia',
   },
   {
-    value: 'Afr',
+    value: 'Africa',
     label: 'Africa',
   },{
-    value: 'LCS',
-    label: 'America',
+    value: 'Americas',
+    label: 'Americas',
   },{
-    value: 'OCE',
+    value: 'Oceania',
     label: 'Oceania',
   },
 ];

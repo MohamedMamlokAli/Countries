@@ -12,15 +12,26 @@ const paginate = (number) =>{
   setCurrentPage(number)
 }
   const sendDataToParent = (data) => { 
-    console.log(data);
     setRegion(data);
-    console.log(region)
+    setFilterChanged(true)
   };
 const {countries} = props
+const [filterChanged,setFilterChanged] = useState(false)
+const [filteredCountires,setFilterdCountries] = useState([])
 const indexOfLastCountry = countriesPerPage * currentPage;
 const indexOfFirstCountry = indexOfLastCountry - countriesPerPage;
-const currentCountries = countries.slice(indexOfFirstCountry,indexOfLastCountry)
+const currentCountries = filteredCountires.slice(indexOfFirstCountry,indexOfLastCountry)
+if(filterChanged){
+  if(region!=="All"){
+    const filtered = countries.filter(country=>country.region===region)
+    setFilterdCountries(filtered)
+  }else{
+    setFilterdCountries(countries)
+  }
+setFilterChanged(false)
+}
 
+  console.log(filteredCountires)
 
 const regex = new RegExp(`${search}`,"gi")
 return (
@@ -37,7 +48,7 @@ return (
 </div> 
 <div className="text-sm gap-4 md:px-10 flex flex-col justify-center items-center md:grid sm:grid-cols-2 lg:grid xl:grid-cols-3 lg:px-20 2xl:grid-cols-4">
     {search?
-    countries.map(country=>regex.test(country.name)?
+    filteredCountires.map(country=>regex.test(country.name)?
     <CardInd 
     flag={country.flag} 
     name={country.name} 
@@ -56,7 +67,7 @@ return (
       
 
   </div>
-  {!search&&<div><PaginationWraper countriesPerPage={countriesPerPage} totalCountries = {countries.length} paginate = {paginate} /></div>
+  {!search&&<div><PaginationWraper countriesPerPage={countriesPerPage} totalCountries = {filteredCountires.length} paginate = {paginate} /></div>
   }
 </div>
 )
